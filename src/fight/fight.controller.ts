@@ -15,7 +15,7 @@ import { getUser } from 'src/auth/decorators/getuser.decorator';
 import { AppUser } from 'src/auth/entities/auth.entity';
 
 @Controller('fight')
-@ApiTags('Fight')
+@ApiTags('fight')
 export class FightController {
   constructor(private readonly fightService: FightService) {}
 

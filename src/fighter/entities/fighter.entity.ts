@@ -4,10 +4,13 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Special } from '../special/entities/special.entity';
 
 @Entity()
 export class Fighter {
@@ -65,4 +68,12 @@ export class Fighter {
 
   @OneToMany(() => Fight, (fight) => fight.winner)
   wonFights: Fight[];
+
+  @ManyToMany(() => Special)
+  @JoinTable({
+    name: 'fighterxspecial', // Nombre de la tabla de unión
+    joinColumn: { name: 'fighter_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'special_id', referencedColumnName: 'id' },
+  })
+  specials: Special[];
 }

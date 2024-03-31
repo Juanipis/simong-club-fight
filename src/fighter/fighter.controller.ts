@@ -20,7 +20,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { UseRoleGuardGuard } from 'src/auth/guards/use-role-guard.guard';
 
 @Controller('fighter')
-@ApiTags('fighter')
+@ApiTags('fighter 🥊')
 export class FighterController {
   constructor(private readonly fighterService: FighterService) {}
 

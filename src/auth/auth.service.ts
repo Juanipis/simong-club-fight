@@ -56,12 +56,4 @@ export class AuthService {
       throw new UnauthorizedException('User or password incorrect');
     }
   }
-
-  findAll() {
-    return `This action returns all auth`;
-  }
-
-  findOne(id: string) {
-    return `This action returns a #${id} auth`;
-  }
 }

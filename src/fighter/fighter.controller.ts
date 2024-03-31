@@ -27,7 +27,6 @@ export class FighterController {
   @Post()
   @ApiOperation({ summary: 'Create a new fighter' })
   @ApiBearerAuth('User JWT Authentication')
-  @ApiBearerAuth('Admin JWT Authentication')
   @ApiResponse({
     status: 201,
     description: 'The fighter has been successfully created.',
@@ -54,7 +53,6 @@ export class FighterController {
   @Delete(':id')
   @ApiOperation({ summary: 'Remove a fighter by id' })
   @ApiBearerAuth('User JWT Authentication')
-  @ApiBearerAuth('Admin JWT Authentication')
   @ApiResponse({
     status: 200,
     description: 'The fighter has been successfully deleted.',

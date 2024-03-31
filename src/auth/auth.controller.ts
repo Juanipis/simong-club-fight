@@ -42,7 +42,6 @@ export class AuthController {
 
   @Get('private')
   @ApiBearerAuth('User JWT Authentication')
-  @ApiBearerAuth('Admin JWT Authentication')
   @ApiOperation({ summary: 'Get private data' })
   @ApiResponse({
     status: 200,
@@ -56,7 +55,6 @@ export class AuthController {
   }
   @Get('private2')
   @ApiBearerAuth('User JWT Authentication')
-  @ApiBearerAuth('Admin JWT Authentication')
   @ApiOperation({ summary: 'Get private data from admin' })
   @UseGuards(AuthGuard(), UseRoleGuardGuard)
   dataAdmin(@getUser() user: AppUser) {

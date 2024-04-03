@@ -24,7 +24,7 @@ export class AuthService {
     try {
       const user = this.userRepository.create({
         ...createAuthDto,
-        country_id: { id: createAuthDto.country_id },
+        //country_id: { id: createAuthDto.country_id },
         password: bcrypt.hashSync(createAuthDto.password, 10),
       });
       await this.userRepository.save(user);

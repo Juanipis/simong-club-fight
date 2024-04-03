@@ -29,8 +29,8 @@ export class CreateAuthDto {
   @ApiProperty({ description: 'The password of the user' })
   password: string;
 
-  @IsInt()
-  @IsPositive()
-  @ApiProperty({ description: 'The cointry id of the user' })
-  country_id: number;
+  // @IsInt()
+  // @IsPositive()
+  // @ApiProperty({ description: 'The cointry id of the user' })
+  // country_id: number;
 }

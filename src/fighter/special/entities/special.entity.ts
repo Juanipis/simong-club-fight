@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Fighter } from 'src/fighter/entities/fighter.entity';
+import { Column, Entity, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
 
 @Entity()
 export class Special {
@@ -10,4 +11,7 @@ export class Special {
 
   @Column('text', { nullable: false })
   description: string;
+
+  @ManyToMany(() => Fighter, (fighter) => fighter.specials)
+  fighters: Fighter[];
 }

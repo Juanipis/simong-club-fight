@@ -69,7 +69,9 @@ export class Fighter {
   @OneToMany(() => Fight, (fight) => fight.winner)
   wonFights: Fight[];
 
-  @ManyToMany(() => Special)
+  @ManyToMany(() => Special
+  // , (special) => special.name, { cascade: true }
+  )
   @JoinTable({
     name: 'fighterxspecial', // Nombre de la tabla de unión
     joinColumn: { name: 'fighter_id', referencedColumnName: 'id' },

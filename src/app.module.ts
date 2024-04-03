@@ -9,9 +9,7 @@ import { FightModule } from './fight/fight.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: `${process.env.NODE_ENV}`,
-    }),
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.POSTGRES_HOST,

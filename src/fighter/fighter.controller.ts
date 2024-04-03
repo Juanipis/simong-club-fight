@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -18,6 +19,7 @@ import {
 import { CreateFighterDto } from './dto/create-fighter.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { UseRoleGuardGuard } from 'src/auth/guards/use-role-guard.guard';
+import { UpdateFighterDto } from './dto/update-fighter.dto';
 
 @Controller('fighter')
 @ApiTags('fighter 🥊')
@@ -63,4 +65,9 @@ export class FighterController {
   remove(@Param('id') id: string) {
     return this.fighterService.remove(id);
   }
+
+  @Patch(':id')
+update(@Param('id') id: string, @Body() updateFighterDto: UpdateFighterDto) {
+  return this.fighterService.update(id, updateFighterDto);
+}
 }

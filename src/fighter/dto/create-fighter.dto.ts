@@ -1,14 +1,21 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { DeepPartial } from 'typeorm';
 import {
+  IsArray,
   IsBoolean,
   IsDate,
   IsNumber,
+  IsOptional,
   IsPositive,
   IsString,
   Max,
   Min,
   MinLength,
+  ValidateNested,
 } from 'class-validator';
+import { CreateSpecialDto } from '../special/dto/create-special.dto';
+import { Type } from 'class-transformer';
+import { Special } from '../special/entities/special.entity';
 
 export class CreateFighterDto {
   @IsString()
@@ -78,4 +85,10 @@ export class CreateFighterDto {
   @ApiProperty({ description: 'The status of the fighter' })
   @IsBoolean()
   is_active: boolean;
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => Special)
+  specials?: DeepPartial<Special[]>;
 }

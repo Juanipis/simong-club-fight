@@ -11,7 +11,9 @@ export class SpecialService {
     @InjectRepository(Special) private specialRepository: Repository<Special>,
   ) {}
   async create(createSpecialDto: CreateSpecialDto) {
-    const newSpecial = this.specialRepository.create({ ...createSpecialDto });
+    const newSpecial = this.specialRepository.create({
+      ...createSpecialDto,
+    });
     await this.specialRepository.save(newSpecial);
     const { name, description } = newSpecial;
     return { name, description };
@@ -23,9 +25,6 @@ export class SpecialService {
 
   async findOne(id: string) {
     const special = await this.specialRepository.findOneBy({ id: id });
-    if (!special) {
-      throw new NotFoundException('Special not found');
-    }
     return special;
   }
 
@@ -37,7 +36,7 @@ export class SpecialService {
     if (!special) {
       throw new NotFoundException('Special not found');
     }
-    return this.specialRepository.save(special);
+    await this.specialRepository.save(special);
   }
 
   async remove(id: string) {
@@ -45,6 +44,7 @@ export class SpecialService {
     if (!special) {
       throw new NotFoundException('Special not found');
     }
-    return this.specialRepository.remove(special);
+    await this.specialRepository.remove(special);
+    return 'Special' + special.name + ' has been deleted successfully.';
   }
 }

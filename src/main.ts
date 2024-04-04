@@ -7,7 +7,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
     .setTitle('Fight Club Simon G API')
-    .setDescription('Parcial de ingeniería Web - Juan Pablo Díaz Correa')
+    .setDescription(
+      'Parcial de ingeniería Web - Juan Pablo Díaz Correa y Natalia Naranjo Rodríguez',
+    )
     .setVersion('1.0')
     .addTag('fights')
     .addBearerAuth(

@@ -67,7 +67,9 @@ export class FighterController {
   }
 
   @Patch(':id')
-update(@Param('id') id: string, @Body() updateFighterDto: UpdateFighterDto) {
-  return this.fighterService.update(id, updateFighterDto);
-}
+  @ApiBearerAuth('User JWT Authentication')
+  @UseGuards(AuthGuard(), UseRoleGuardGuard)
+  update(@Param('id') id: string, @Body() updateFighterDto: UpdateFighterDto) {
+    return this.fighterService.update(id, updateFighterDto);
+  }
 }

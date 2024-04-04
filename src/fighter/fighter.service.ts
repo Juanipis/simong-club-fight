@@ -4,32 +4,52 @@ import { Fighter } from './entities/fighter.entity';
 import { Repository } from 'typeorm';
 import { CreateFighterDto } from './dto/create-fighter.dto';
 import { UpdateFighterDto } from './dto/update-fighter.dto';
+import { Special } from 'src/special/entities/special.entity';
 
 @Injectable()
 export class FighterService {
   constructor(
     @InjectRepository(Fighter) private fighterRepository: Repository<Fighter>,
+    @InjectRepository(Special) private specialRepository: Repository<Special>,
   ) {}
 
   async create(createFighterDto: CreateFighterDto) {
-    const newFighter = this.fighterRepository.create({
-      ...createFighterDto,
-      country_id: { id: createFighterDto.country_id },
-    });
-    await this.fighterRepository.save(newFighter);
-    const { name, date_of_birth } = newFighter;
-    return { name, date_of_birth };
+    try {
+      const specials_ids = await Promise.all(
+        createFighterDto.special_ids.map((id) =>
+          this.specialRepository.findOneBy({ id }).then((special) => {
+            if (!special) {
+              throw new NotFoundException(`Special with id ${id} not found`);
+            }
+            return special;
+          }),
+        ),
+      );
+      const fighter = await this.fighterRepository.create({
+        ...createFighterDto,
+        country_id: { id: createFighterDto.country_id },
+        specials: specials_ids,
+      });
+      await this.fighterRepository.save(fighter);
+      return fighter;
+    } catch (error) {
+      throw new NotFoundException(error.message);
+    }
   }
 
   async findAll() {
     const fighters = await this.fighterRepository.find({
-      relations: ['country_id'],
+      relations: ['country_id', 'specials'],
     });
+
     return fighters;
   }
 
   async findOne(id: string) {
-    const fighter = await this.fighterRepository.findOneBy({ id: id });
+    const fighter = await this.fighterRepository.find({
+      where: { id },
+      relations: ['country_id', 'specials'],
+    });
     return fighter;
   }
 

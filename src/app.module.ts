@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { FighterModule } from './fighter/fighter.module';
 import { AuthModule } from './auth/auth.module';
 import { FightModule } from './fight/fight.module';
+import { SpecialModule } from './special/special.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { FightModule } from './fight/fight.module';
     FighterModule,
     AuthModule,
     FightModule,
+    SpecialModule,
   ],
   controllers: [AppController],
   providers: [AppService],

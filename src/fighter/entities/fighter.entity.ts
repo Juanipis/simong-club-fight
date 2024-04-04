@@ -1,5 +1,6 @@
 import { Country } from 'src/entities/country.entity';
 import { Fight } from 'src/fight/entities/fight.entity';
+import { Special } from 'src/special/entities/special.entity';
 import {
   Column,
   Entity,
@@ -10,7 +11,6 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Special } from '../special/entities/special.entity';
 
 @Entity()
 export class Fighter {
@@ -69,13 +69,7 @@ export class Fighter {
   @OneToMany(() => Fight, (fight) => fight.winner)
   wonFights: Fight[];
 
-  @ManyToMany(() => Special
-  // , (special) => special.name, { cascade: true }
-  )
-  @JoinTable({
-    name: 'fighterxspecial', // Nombre de la tabla de unión
-    joinColumn: { name: 'fighter_id', referencedColumnName: 'id' },
-    inverseJoinColumn: { name: 'special_id', referencedColumnName: 'id' },
-  })
+  @ManyToMany(() => Special, (special) => special.name)
+  @JoinTable()
   specials: Special[];
 }

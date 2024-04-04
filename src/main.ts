@@ -8,10 +8,11 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Fight Club Simon G API')
     .setDescription(
-      'Parcial de ingeniería Web - Juan Pablo Díaz Correa y Natalia Naranjo Rodríguez',
+      'Parcial de ingeniería Web - Juan Pablo Díaz Correa y Natalia Naranjo Rodríguez' +
+        '\n\n![Image Description](https://s1.abcstatics.com/media/play/2017/04/05/menuda-familia-enanos-kltF--620x349@abc.jpg)', // Asegúrate de reemplazar con la URL de tu imagen,
     )
     .setVersion('1.0')
-    .addTag('fights')
+    .addTag('Fights')
     .addBearerAuth(
       { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
       'User JWT Authentication',

@@ -22,7 +22,7 @@ import { UseRoleGuardGuard } from 'src/auth/guards/use-role-guard.guard';
 import { UpdateFighterDto } from './dto/update-fighter.dto';
 
 @Controller('fighter')
-@ApiTags('fighter 🥊')
+@ApiTags('Fighter 🥊')
 export class FighterController {
   constructor(private readonly fighterService: FighterService) {}
 
@@ -69,6 +69,7 @@ export class FighterController {
   @Patch(':id')
   @ApiBearerAuth('User JWT Authentication')
   @UseGuards(AuthGuard(), UseRoleGuardGuard)
+  @ApiOperation({ summary: 'Update a fighter by id' })
   update(@Param('id') id: string, @Body() updateFighterDto: UpdateFighterDto) {
     return this.fighterService.update(id, updateFighterDto);
   }

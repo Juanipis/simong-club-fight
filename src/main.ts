@@ -9,7 +9,7 @@ async function bootstrap() {
     .setTitle('Fight Club Simon G API')
     .setDescription(
       'Parcial de ingeniería Web - Juan Pablo Díaz Correa y Natalia Naranjo Rodríguez' +
-        '\n\n![Image Description](https://s1.abcstatics.com/media/play/2017/04/05/menuda-familia-enanos-kltF--620x349@abc.jpg)', // Asegúrate de reemplazar con la URL de tu imagen,
+        '\n\n![Image Description](https://i.gifer.com/76fh.gif)', // Asegúrate de reemplazar con la URL de tu imagen,
     )
     .setVersion('1.0')
     .addTag('Fights')
